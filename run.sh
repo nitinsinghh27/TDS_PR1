@@ -38,9 +38,9 @@ fi
 
 echo ""
 echo "Starting server..."
-echo "Server will be available at: http://localhost:5000"
-echo "Health check: http://localhost:5000/"
-echo "Deploy endpoint: POST http://localhost:5000/api/deploy"
+echo "Server will be available at: http://localhost:5001"
+echo "Health check: http://localhost:5001/"
+echo "Deploy endpoint: POST http://localhost:5001/api/deploy"
 echo ""
 echo "Press Ctrl+C to stop the server"
 echo ""

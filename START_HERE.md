@@ -127,7 +127,7 @@ After setup, test your system:
 python test_api.py
 
 # Method 2: Manual curl
-curl -X POST http://localhost:5000/api/deploy \
+curl -X POST http://localhost:5001/api/deploy \
   -H "Content-Type: application/json" \
   -d '{
     "email": "your@email.com",

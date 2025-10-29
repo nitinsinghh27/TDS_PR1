@@ -132,5 +132,5 @@ if __name__ == '__main__':
         logger.warning("STUDENT_EMAIL not set in environment variables")
 
     # Run the Flask app
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 5001))
     app.run(host='0.0.0.0', port=port, debug=False)

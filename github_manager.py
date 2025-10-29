@@ -4,6 +4,7 @@ Handles repo creation, file uploads, and GitHub Pages deployment
 """
 import logging
 import os
+import re
 import subprocess
 import tempfile
 import shutil
@@ -48,9 +49,11 @@ def create_and_deploy_repo(task_name, app_code, brief, checks):
     try:
         # Create the repository
         logger.info(f"Creating GitHub repository: {repo_name}")
+        # Sanitize description to remove control characters
+        description = sanitize_description(f"Auto-generated application: {brief[:100]}")
         repo = user.create_repo(
             name=repo_name,
-            description=f"Auto-generated application: {brief[:100]}",
+            description=description,
             homepage="",
             private=False,
             has_issues=True,
@@ -106,6 +109,23 @@ def sanitize_repo_name(task_name):
         repo_name = f"task-{datetime.utcnow().strftime('%Y%m%d-%H%M%S')}"
 
     return repo_name
+
+def sanitize_description(description):
+    """
+    Remove control characters from description text for GitHub API
+
+    Args:
+        description (str): Original description text
+
+    Returns:
+        str: Sanitized description without control characters
+    """
+    # Remove control characters (ASCII 0-31 and 127)
+    # Keep only printable characters and spaces
+    sanitized = re.sub(r'[\x00-\x1f\x7f-\x9f]', ' ', description)
+    # Replace multiple spaces with single space
+    sanitized = ' '.join(sanitized.split())
+    return sanitized
 
 def push_files_to_repo(repo, app_code, brief, checks):
     """

@@ -76,7 +76,7 @@ python app.py
 
 You should see:
 ```
- * Running on http://0.0.0.0:5000
+ * Running on http://0.0.0.0:5001
 ```
 
 ### 6. Test with a Request
@@ -84,7 +84,7 @@ You should see:
 Open a new terminal and run:
 
 ```bash
-curl -X POST http://localhost:5000/api/deploy \
+curl -X POST http://localhost:5001/api/deploy \
   -H "Content-Type: application/json" \
   -d '{
     "email": "your.email@example.com",
